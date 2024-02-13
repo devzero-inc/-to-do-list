@@ -1,4 +1,4 @@
-# Todo List App
+# Todo List App ![ workflow](https://github.com/devzero-inc/to-do-list/actions/workflows/todo-nuxt.yml/badge.svg)
 
 ## Overview
 This todo app offers a minimalist approach to task management, focusing on core functionalities that allow users to add, remove, and mark tasks as done. Designed with simplicity and ease of use in mind, it provides a clutter-free environment to help users concentrate on their tasks without unnecessary features. Whether it's for daily chores, work assignments, or personal goals, the app facilitates a straightforward way to keep track of tasks, ensuring users can effectively manage their to-dos and stay organized.
