@@ -5,7 +5,7 @@ dev:
   - command: npm install
     directory: to-do-list
     name: install_cmd_0
-  name: ""
+  name: "to-do-list"
   packages:
   - dz.docker
   - nixpkgs.nodejs_18
@@ -21,3 +21,9 @@ compute:
 network:
   category: container
   network_name: default
+description: A minimalist approach to task management, focusing on core functionalities that allow users to add, remove, and mark tasks as done
+display_name: Todo List App
+tags:
+- MySQL
+- Nuxt.js
+- Tailwind CSS
