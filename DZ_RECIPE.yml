@@ -1,0 +1,23 @@
+# suggester tool version: 0.0.1+c56de9f4-dirty
+
+dev:
+  commands:
+  - command: npm install
+    directory: to-do-list
+    name: install_cmd_0
+  name: ""
+  packages:
+  - dz.docker
+  - nixpkgs.nodejs_18
+  repos:
+  - https://github.com/devzero-inc/to-do-list
+compute:
+  compute_name: default
+  os_family: UBUNTU_22_04
+  region: us-west-1
+  resources:
+    cpus: 4+
+    disk: 50
+network:
+  category: container
+  network_name: default
