@@ -12,7 +12,7 @@ services:
       - DB_USER=root
 
   db:
-    image: mysql:latest 
+    image: mysql
     environment:
       MYSQL_USER: 'user'
       MYSQL_PASSWORD: 'password'

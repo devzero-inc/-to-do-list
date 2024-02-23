@@ -35,9 +35,7 @@ const connectWithRetry = async (
         );
       }
       console.error(
-        `Failed to connect to the database, retrying in ${
-          interval / 1000
-        } seconds...`
+        `Waiting for database to start...`
       );
       await new Promise((resolve) => setTimeout(resolve, interval));
       retries++;
