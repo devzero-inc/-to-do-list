@@ -1,14 +1,33 @@
-# suggester tool version: 0.0.1+c56de9f4-dirty
-
 dev:
+  codeCloneRoot: /home/devzero
   commands:
-  - command: npm install
+  - command: sudo apt-get update && sudo apt-get upgrade && sudo apt-get install -y
+      unzip tar curl
+    name: install_base_packages
+  - command: |-
+      curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash - && sudo apt-get install -y nodejs
+      npm install
+      npm run build
     directory: to-do-list
-    name: install_cmd_0
-  name: "to-do-list"
-  packages:
-  - dz.docker
-  - nixpkgs.nodejs_18
+    name: buildtime_install_cmd_for_JavaScript
+  - command: |-
+      sudo apt-get update
+      sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+      sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+      sudo apt-get update
+      sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+    directory: to-do-list
+    name: buildtime_install_cmd_for_Docker
+  - command: |-
+      sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+      sudo chmod +x /usr/local/bin/docker-compose
+    name: buildtime_install_cmd_for_Docker
+  - command: |-
+      echo c3VkbyBncm91cGFkZCBkb2NrZXIgfHwgdHJ1ZQpzdWRvIHVzZXJtb2QgLWFHIGRvY2tlciAkVVNFUgpuZXdncnAgZG9ja2VyICMgaWYgeW91IGNhbid0IGFjY2VzcyBkb2NrZXIsIHRyeSByZWJvb3RpbmcgdGhlIHdvcmtzcGFjZSBvbmNlOiBgc3VkbyByZWJvb3RgCnN1ZG8gY2hvd24gIiRVU0VSIjoiJFVTRVIiICIkSE9NRSIvLmRvY2tlciAtUgpzdWRvIGNobW9kIGcrcnd4ICIkSE9NRS8uZG9ja2VyIiAtUgpzdWRvIHN5c3RlbWN0bCBzdGFydCBkb2NrZXIKc3VkbyBzeXN0ZW1jdGwgZW5hYmxlIGRvY2tlci5zZXJ2aWNlCnN1ZG8gc3lzdGVtY3RsIGVuYWJsZSBjb250YWluZXJkLnNlcnZpY2U= | base64 -d > /home/devzero/runtime.sh
+      chmod +x /home/devzero/runtime.sh
+    name: b64_runtime_script
+  name: default
   repos:
   - https://github.com/devzero-inc/to-do-list
 compute:
@@ -18,6 +37,13 @@ compute:
   resources:
     cpus: 4+
     disk: 50
+    volumes:
+    - path: /home/devzero
+      subPath: home
+    - path: /var/lib/devzero
+      subPath: var-lib-devzero
+    - path: /var/lib/docker
+      subPath: var-lib-docker
 network:
   category: container
   network_name: default
